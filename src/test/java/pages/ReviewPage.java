@@ -54,9 +54,13 @@ public class ReviewPage extends BasePage<ReviewPage> {
         submitButton.click();
     }
 
-    public void setText(){
-        textarea.sendKeys(randomString(60)+" "+randomString(50)+" "+
-        randomString(50)+" "+randomString(50)+" "+randomString(10));
+    public String setText(){
+        textarea.clear();
+        String randomText = randomString(60)+" "+randomString(50)+" "+
+                randomString(50)+" "+randomString(50)+" "+randomString(10);
+
+        textarea.sendKeys(randomText);
+        return randomText.replace(" ","");
     }
     public ReviewPage init() {
         return new ReviewPage().init(ReviewPage.class);

@@ -15,7 +15,7 @@ public class SeleniumDriver {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("disable-infobars");
-        options.addArguments("start-fullscreen");
+//        options.addArguments("start-fullscreen");
         driverThread.set(new ChromeDriver(options));
     }
     public static WebDriver getDriver() {

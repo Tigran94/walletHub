@@ -12,10 +12,13 @@ import static setup.SeleniumDriver.getDriver;
 
 
 public class BaseTest {
+
+
     @BeforeMethod
     public void setupBaseMethod() {
         SeleniumDriver.initDriver();
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        getDriver().manage().window().maximize();
     }
 
     @AfterClass

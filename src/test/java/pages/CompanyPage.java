@@ -14,12 +14,21 @@ import static setup.SeleniumDriver.getDriver;
  */
 public class CompanyPage extends BasePage<CompanyPage>  {
     private Actions actions;
-
     @FindBy(css = ".login")
     private WebElement loginButton;
 
     @FindBy(css = ".wh-rating.rating_4_5")
     private WebElement stars;
+
+    @FindBy(xpath = "//a[@data-menu='m-user']")
+    private WebElement navWalletHub;
+
+    @FindBy(id="m-user")
+    private  WebElement walletHubDropDown;
+
+    @FindBy(xpath = "//a[text()='Profile']")
+    WebElement profile;
+
 
 
     public CompanyPage() {
@@ -48,6 +57,16 @@ public class CompanyPage extends BasePage<CompanyPage>  {
     public void hoverOnStars(){
         PageLoadHelper.isLoaded().isElementIsVisible(stars);
         actions.moveToElement(stars).perform();
+    }
+
+    public void hoverOnWalletHubDropDown(){
+        actions.moveToElement(navWalletHub).perform();
+        waitForElement(walletHubDropDown);
+    }
+
+    public void clickProfile(){
+        profile.click();
+        PageLoadHelper.isLoaded().waitForPageLoaded();
     }
 
     @Override

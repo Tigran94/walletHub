@@ -1,9 +1,11 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.CompanyPage;
+import pages.ProfilePage;
 import pages.ReviewPage;
 import setup.BaseTest;
 import steps.LoginSteps;
@@ -16,6 +18,8 @@ public class WalletHubTest extends BaseTest {
     CompanyPage companyPage;
     LoginSteps loginSteps;
     ReviewPage reviewPage;
+    ProfilePage profilePage;
+
     SoftAssert softAssert;
     String rgbColor = "rgba(73, 224, 224, 1)";
 
@@ -24,6 +28,7 @@ public class WalletHubTest extends BaseTest {
         companyPage = new CompanyPage();
         loginSteps = new LoginSteps();
         reviewPage = new ReviewPage();
+        profilePage = new ProfilePage();
     }
 
     @Test
@@ -53,8 +58,24 @@ public class WalletHubTest extends BaseTest {
 
         reviewPage.hoverOnStar("5");
         reviewPage.clickStar("5");
-        reviewPage.setText();
+        String randomText = reviewPage.setText();
         reviewPage.clickSubmitButton();
 
+        companyPage.hoverOnWalletHubDropDown();
+        companyPage.clickProfile();
+
+        profilePage = profilePage.init();
+        softAssert.assertTrue(profilePage.isContentVisible(),"Content is not visible in activity feed");
+        softAssert.assertEquals(randomText,profilePage.getActivityText(),"Activity content text is missmatched");
+        softAssert.assertEquals(profilePage.getReviewerName(),profilePage.userName,"Wrong reviewer name");
+
+        softAssert.assertAll();
+
+        profilePage.clickReviews();
+
+        softAssert.assertTrue(profilePage.isReviewVisible(),"Review is not visible in review feed");
+        softAssert.assertEquals(randomText,profilePage.getReviewText(),"Reviews content text is missmatched");
+
+        softAssert.assertAll();
     }
 }

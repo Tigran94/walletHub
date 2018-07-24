@@ -11,6 +11,7 @@
     <properties>
         <email>wallethub@appricode.io</email>
         <password>Wallethub123!@#</password>
+        <userName>wallethub_125</userName>
     </properties>
     <build>
         <plugins>
@@ -40,6 +41,7 @@
                     <systemPropertyVariables>
                         <email>${email}</email>
                         <password>${password}</password>
+                        <userName>${userName}</userName>
                     </systemPropertyVariables>
                 </configuration>
 
