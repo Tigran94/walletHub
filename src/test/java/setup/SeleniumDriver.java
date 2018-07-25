@@ -10,11 +10,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
  */
 public class SeleniumDriver {
     private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<WebDriver>();
-    private static String osName=System.getProperty("os.name");
+
     public static void initDriver() {
-      if (osName.contains("win")){
-            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +"/src/test/resources/win/chromedriver.exe");
-      }else  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +"/src/test/resources/mac/chromedriver");
+        if(SystemUtils.IS_OS_WINDOWS) {
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/driver/chromedriver.exe");
+        }
+        else System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/test/resources/driver/chromedriver");
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
