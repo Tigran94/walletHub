@@ -9,9 +9,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
  */
 public class SeleniumDriver {
     private static ThreadLocal<WebDriver> driverThread = new ThreadLocal<WebDriver>();
-
+    private static String osName=System.getProperty("os.name");
     public static void initDriver() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +"/src/test/resources/driver/chromedriver.exe");
+      if (osName.contains("win")){
+            System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +"/src/test/resources/win/chromedriver.exe");
+      }else  System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") +"/src/test/resources/mac/chromedriver");
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("disable-infobars");

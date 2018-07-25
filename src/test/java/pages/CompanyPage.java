@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import setup.PageLoadHelper;
 
 
+import java.util.List;
+
 import static setup.SeleniumDriver.getDriver;
 
 /**
@@ -27,7 +29,10 @@ public class CompanyPage extends BasePage<CompanyPage>  {
     private  WebElement walletHubDropDown;
 
     @FindBy(xpath = "//a[text()='Profile']")
-    WebElement profile;
+    private WebElement profile;
+
+    @FindBy(css = ".hover")
+    private List<WebElement> star;
 
 
 
@@ -50,6 +55,9 @@ public class CompanyPage extends BasePage<CompanyPage>  {
 
     public void hoverOnStar(String starCount){
         actions.moveToElement(getDriver().findElement(By.xpath("//div[@class='wh-rating-choices-holder']//a[@href='#' and contains(text(),'?')]".replace("?",starCount)))).perform();
+    }
+    public int getActiveStarsCount() throws InterruptedException {
+        return star.size()+1;
     }
     public void clickStar(String starCount){
         getDriver().findElement(By.xpath("//div[@class='wh-rating-choices-holder']//a[@href='#' and contains(text(),'?')]".replace("?",starCount))).click();

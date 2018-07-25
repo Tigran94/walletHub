@@ -32,7 +32,7 @@ public class WalletHubTest extends BaseTest {
     }
 
     @Test
-    public void test() {
+    public void test() throws InterruptedException {
         companyPage = companyPage.init();
         companyPage.open();
         if(companyPage.isLoginButtonPresent()){
@@ -41,6 +41,9 @@ public class WalletHubTest extends BaseTest {
         }
         companyPage.hoverOnStars();
         companyPage.hoverOnStar("4");
+
+        Assert.assertEquals(companyPage.getActiveStarsCount(),4,"Stars doesn't lit up");
+
 
         companyPage.clickStar("4");
         reviewPage = reviewPage.init();
