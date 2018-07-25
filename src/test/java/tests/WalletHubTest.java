@@ -38,6 +38,7 @@ public class WalletHubTest extends BaseTest {
         if(companyPage.isLoginButtonPresent()){
             loginSteps.login();
             companyPage.open();
+
         }
         companyPage.hoverOnStars();
         companyPage.hoverOnStar("4");
